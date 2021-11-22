@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let compHand, playerHand;
+    let compWins = 0;
+    let playerWins = 0;
+
+    function draw() {
+        return (Math.floor(Math.random() * 3));
+    }
+
+    function computerPlay() {
+        switch (draw()) {
+            case 0:
+                compHand = "ROCK";
+                break;
+            case 1:
+                compHand = "PAPER";
+                break;
+            case 2:
+                compHand = "SCISSORS";
+                break;
+            default:
+                console.log("Strange error");
+                break;
+        }
+        return compHand;
+    }
+
+    function playGame() {
+        let tied = true;
+        while (tied === true) {
+            computerPlay();
+            playerHand = (prompt("Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
+            while (!(playerHand === "ROCK") && !(playerHand === "PAPER") && !(playerHand ===
+                "SCISSORS")) { //while the playerHand does NOT equal rock, paper, or scissors
+                console.log("invalid input!");
+                playerHand = (prompt("Invalid input! Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
+            }
+
+            if (playerHand === compHand) {
+                console.log("tied!");
+                tied = true;
+            } else {
+                tied = false;
+            }
+        }
+        console.log("Player threw " + playerHand + "! Computer threw " + compHand + "!");
+        // 0 > 2 , 2 > 1, 1 > 0
+        switch (playerHand) {
+            case "ROCK": //player rock
+                switch (compHand) {
+                    case "PAPER":
+                        console.log("Computer wins!");
+                        ++compWins;
+                        return compWins;
+                    case "SCISSORS":
+                        console.log("Player wins!");
+                        ++playerWins;
+                        return playerWins;
+                }
+                break;
+            case "PAPER": //player paper
+                switch (compHand) {
+                    case "ROCK":
+                        console.log("Player wins!");
+                        ++playerWins;
+                        return playerWins;
+                    case "SCISSORS":
+                        console.log("Computer wins!");
+                        ++compWins;
+                        return compWins;
+                }
+                //
+                break;
+            case "SCISSORS": //player scissors
+                switch (compHand) {
+                    case "ROCK":
+                        console.log("Computer wins!");
+                        ++compWins;
+                        return compWins;
+                    case "PAPER":
+                        console.log("Player wins!");
+                        ++playerWins;
+                        return playerWins;
+                }
+                //
+                break;
+        }
+    }
+
+    for (let i = 1; i <= 5; ++i) {
+        playGame();
+        console.log("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
+    }
+    if (playerWins > compWins) {
+        console.log("You win! Nice!");
+    } else {
+        console.log("You lost! RIP Bozo!");
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>
