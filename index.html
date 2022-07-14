@@ -28,7 +28,7 @@
                 compHand = "SCISSORS";
                 break;
             default:
-                console.log("Strange error");
+                alert("Strange error");
                 break;
         }
         return compHand;
@@ -41,28 +41,28 @@
             playerHand = (prompt("Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
             while (!(playerHand === "ROCK") && !(playerHand === "PAPER") && !(playerHand ===
                 "SCISSORS")) { //while the playerHand does NOT equal rock, paper, or scissors
-                console.log("invalid input!");
+                alert("invalid input!");
                 playerHand = (prompt("Invalid input! Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
             }
 
             if (playerHand === compHand) {
-                console.log("tied!");
+                alert("tied!");
                 tied = true;
             } else {
                 tied = false;
             }
         }
-        console.log("Player threw " + playerHand + "! Computer threw " + compHand + "!");
+        alert("Player threw " + playerHand + "! Computer threw " + compHand + "!");
         // 0 > 2 , 2 > 1, 1 > 0
         switch (playerHand) {
             case "ROCK": //player rock
                 switch (compHand) {
                     case "PAPER":
-                        console.log("Computer wins!");
+                        alert("Computer wins!");
                         ++compWins;
                         return compWins;
                     case "SCISSORS":
-                        console.log("Player wins!");
+                        alert("Player wins!");
                         ++playerWins;
                         return playerWins;
                 }
@@ -70,11 +70,11 @@
             case "PAPER": //player paper
                 switch (compHand) {
                     case "ROCK":
-                        console.log("Player wins!");
+                        alert("Player wins!");
                         ++playerWins;
                         return playerWins;
                     case "SCISSORS":
-                        console.log("Computer wins!");
+                        alert("Computer wins!");
                         ++compWins;
                         return compWins;
                 }
@@ -83,11 +83,11 @@
             case "SCISSORS": //player scissors
                 switch (compHand) {
                     case "ROCK":
-                        console.log("Computer wins!");
+                        alert("Computer wins!");
                         ++compWins;
                         return compWins;
                     case "PAPER":
-                        console.log("Player wins!");
+                        alert("Player wins!");
                         ++playerWins;
                         return playerWins;
                 }
@@ -98,12 +98,12 @@
 
     for (let i = 1; i <= 5; ++i) {
         playGame();
-        console.log("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
+        alert("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
     }
     if (playerWins > compWins) {
-        console.log("You win! Nice!");
+        alert("You win! Nice!");
     } else {
-        console.log("You lost! RIP Bozo!");
+        alert("You lost! RIP Bozo!");
     }
 </script>
 
