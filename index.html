@@ -172,6 +172,8 @@
             cWinHtml.textContent = compWins;
         } else if (compWins == 5) {
             winStatus.textContent = ("Computer won five games! Resetting scoreboard...");
+            playerWins = 0;
+            compWins = 0;
             pWinHtml.textContent = playerWins;
             cWinHtml.textContent = compWins;
         }
