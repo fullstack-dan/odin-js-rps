@@ -1,3 +1,39 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#moveBox {
+    justify-content: center;
+    display: flex;
+    gap: 16px;
+}
+
+#curtain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: 50%;
+}
+
+#playGame {
+    opacity: 100%;
+}
+
+.inactive {
+    background-color: gray; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .move {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -8,3 +44,18 @@
     display: inline-block;
     font-size: 16px;
 }
+.title {
+    font-size: 64px;
+    text-align: center;
+}
+
+/* ```
+computerPlay();
+playerHand = moves.forEach(move => {
+  move.addEventListener('click', () => {
+    return move.textContent.toUpperCase();
+        })
+      });
+```
+
+`computerPlay()` basically returns the computer throwing rock, paper or scissors and stores it in `compHand`. next, the player should through their hand, and that's dependent on them pressing a button, which returns the text content of that button (rock, paper, or scissors) and stores it in `playerHand`. This... isn't working, though */

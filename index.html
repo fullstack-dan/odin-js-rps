@@ -10,38 +10,62 @@
 </head>
 
 <body>
-
-    <button>Hi!</button>
-
+    <!-- <div id="curtain">
+        <p>Play game?</p>
+        <div id="playGame">
+            <button>Yes!</button>
+            <button>No...</button>
+        </div>
+    </div> -->
 </body>
 
 <script>
-
+    var compHand;
+    var playerHand = undefined;
     const body = document.querySelector('body');
+
+    var title = document.createElement('h1');
+    title.textContent = "Rock, Paper, Scissors";
+    title.classList.add("title")
+    body.appendChild(title);
+
+    var gameStatus = document.createElement('p');
+    gameStatus.textContent = "Waiting for player input..."
+    var winStatus = document.createElement('p');
+
+    //add buttons and functionallity
+    var moveBox = document.createElement('div');
+    moveBox.id = "moveBox";
+    body.appendChild(moveBox)
+
     var moves = [];
 
     var rock = document.createElement('button');
     rock.textContent = "rock";
-    rock.classList.add('move');
+    rock.classList.add('inactive');
     moves.push(rock);
 
     var paper = document.createElement('button');
     paper.textContent = "paper";
-    paper.classList.add('move');
+    paper.classList.add('inactive');
     moves.push(paper);
 
     var scissors = document.createElement('button');
     scissors.textContent = "scissors";
-    scissors.classList.add('move');
+    scissors.classList.add('inactive');
     moves.push(scissors);
 
     moves.forEach(move => {
-        body.appendChild(move);
+        moveBox.appendChild(move);
         move.addEventListener('click', () => {
             playerHand = move.textContent.toUpperCase();
             playGame();
-        })
-    })
+        });
+    });
+
+    body.appendChild(gameStatus);
+    body.appendChild(winStatus);
+    //end
 
 
 
@@ -49,16 +73,11 @@
 
 
 
-    let compHand, playerHand;
     let compWins = 0;
     let playerWins = 0;
 
-    function draw() {
-        return (Math.floor(Math.random() * 3));
-    }
-
     function computerPlay() {
-        switch (draw()) {
+        switch (Math.floor(Math.random() * 3)) {
             case 0:
                 compHand = "ROCK";
                 break;
@@ -77,62 +96,59 @@
 
     function playGame() {
         let tied = true;
-        while (tied === true) {
-            computerPlay();
-
-            if (playerHand === compHand) {
-                alert("tied!");
-                tied = true;
-            } else {
-                tied = false;
+        computerPlay();
+        if (playerHand === compHand) {
+            gameStatus.textContent = ("tied! Waiting for player input...");
+            winStatus.textContent = ("");
+            tied = true;
+        } else {
+            tied = false;
+            // no tie; now compare results
+            gameStatus.textContent = ("Player threw " + playerHand + "! Computer threw " + compHand + "!");
+            switch (playerHand) {
+                case "ROCK": //player rock
+                    switch (compHand) {
+                        case "PAPER":
+                            winStatus.textContent = ("Computer wins!");
+                            ++compWins;
+                            return compWins;
+                        case "SCISSORS":
+                            winStatus.textContent = ("Player wins!");
+                            ++playerWins;
+                            return playerWins;
+                    }
+                    break;
+                case "PAPER": //player paper
+                    switch (compHand) {
+                        case "ROCK":
+                            winStatus.textContent = ("Player wins!");
+                            ++playerWins;
+                            return playerWins;
+                        case "SCISSORS":
+                            winStatus.textContent = ("Computer wins!");
+                            ++compWins;
+                            return compWins;
+                    }
+                    //
+                    break;
+                case "SCISSORS": //player scissors
+                    switch (compHand) {
+                        case "ROCK":
+                            winStatus.textContent = ("Computer wins!");
+                            ++compWins;
+                            return compWins;
+                        case "PAPER":
+                            winStatus.textContent = ("Player wins!");
+                            ++playerWins;
+                            return playerWins;
+                    }
+                    //
+                    break;
             }
         }
-        alert("Player threw " + playerHand + "! Computer threw " + compHand + "!");
-        // 0 > 2 , 2 > 1, 1 > 0
-        switch (playerHand) {
-            case "ROCK": //player rock
-                switch (compHand) {
-                    case "PAPER":
-                        alert("Computer wins!");
-                        ++compWins;
-                        return compWins;
-                    case "SCISSORS":
-                        alert("Player wins!");
-                        ++playerWins;
-                        return playerWins;
-                }
-                break;
-            case "PAPER": //player paper
-                switch (compHand) {
-                    case "ROCK":
-                        alert("Player wins!");
-                        ++playerWins;
-                        return playerWins;
-                    case "SCISSORS":
-                        alert("Computer wins!");
-                        ++compWins;
-                        return compWins;
-                }
-                //
-                break;
-            case "SCISSORS": //player scissors
-                switch (compHand) {
-                    case "ROCK":
-                        alert("Computer wins!");
-                        ++compWins;
-                        return compWins;
-                    case "PAPER":
-                        alert("Player wins!");
-                        ++playerWins;
-                        return playerWins;
-                }
-                //
-                break;
-        }
+
     }
 
-        // playGame();
-        // alert("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
     // if (playerWins > compWins) {
     //     alert("You win! Nice!");
     // } else {
