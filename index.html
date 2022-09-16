@@ -5,9 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
+<body>
+
+    <button>Hi!</button>
+
+</body>
+
 <script>
+
+    const body = document.querySelector('body');
+    var moves = [];
+
+    var rock = document.createElement('button');
+    rock.textContent = "rock";
+    rock.classList.add('move');
+    moves.push(rock);
+
+    var paper = document.createElement('button');
+    paper.textContent = "paper";
+    paper.classList.add('move');
+    moves.push(paper);
+
+    var scissors = document.createElement('button');
+    scissors.textContent = "scissors";
+    scissors.classList.add('move');
+    moves.push(scissors);
+
+    moves.forEach(move => {
+        body.appendChild(move);
+        move.addEventListener('click', () => {
+            playerHand = move.textContent.toUpperCase();
+            playGame();
+        })
+    })
+
+
+
+
+
+
+
     let compHand, playerHand;
     let compWins = 0;
     let playerWins = 0;
@@ -38,12 +79,6 @@
         let tied = true;
         while (tied === true) {
             computerPlay();
-            playerHand = (prompt("Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
-            while (!(playerHand === "ROCK") && !(playerHand === "PAPER") && !(playerHand ===
-                "SCISSORS")) { //while the playerHand does NOT equal rock, paper, or scissors
-                alert("invalid input!");
-                playerHand = (prompt("Invalid input! Throw ROCK, PAPER, or SCISSORS: ")).toUpperCase();
-            }
 
             if (playerHand === compHand) {
                 alert("tied!");
@@ -96,19 +131,13 @@
         }
     }
 
-    for (let i = 1; i <= 5; ++i) {
-        playGame();
-        alert("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
-    }
-    if (playerWins > compWins) {
-        alert("You win! Nice!");
-    } else {
-        alert("You lost! Better luck next time!");
-    }
+        // playGame();
+        // alert("Computer has " + compWins + " wins! Player has " + playerWins + " wins! ");
+    // if (playerWins > compWins) {
+    //     alert("You win! Nice!");
+    // } else {
+    //     alert("You lost! Better luck next time!");
+    // }
 </script>
-
-<body>
-
-</body>
 
 </html>
